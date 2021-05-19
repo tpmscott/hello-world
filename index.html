@@ -7,11 +7,47 @@
 
 <body>
 
-  Receiving iframe.
+  Receiving iframe. <br><br>
+ 
+  Receive Message: <p id="Upload_Content"> </p>
+
   <script>
-    window.addEventListener('message', function(event) {
-      alert(`Received ${event.data} from ${event.origin}`);
+
+    window.addEventListener('message', function() {     // for receiving data from index
+
+      //alert(`Received ${event.data} from ${event.origin}`);
+
+      //if( ${event.data} == 'Send_Back') 
+
+      myFunction(event);
+         //event.source.postMessage('Thank you for downloading data', '*');
+
     });
+
+    function myFunction(event) {
+
+       if( event.data == 'Send_Back') {
+
+          event.source.postMessage('Thank you for downloading data', '*');
+   
+       }
+       else {
+
+          //alert(`Received ${event.data} from ${event.origin}`);
+
+          document.getElementById("Upload_Content").innerHTML = event.data;
+
+       }
+
+    }
+
+
+
+
+    // can message back using event.source.postMessage(...)
+
+
+
   </script>
 
 </body>
